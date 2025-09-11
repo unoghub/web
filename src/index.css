@@ -1,0 +1,1081 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Animations */
+@layer utilities {
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg) scale(1);
+    }
+    25% {
+      transform: translateY(-6px) rotate(1deg) scale(1.05);
+    }
+    50% {
+      transform: translateY(-12px) rotate(0deg) scale(1);
+    }
+    75% {
+      transform: translateY(-6px) rotate(-1deg) scale(0.95);
+    }
+  }
+
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes spark {
+    0%, 100% {
+      opacity: 0;
+      transform: scale(0) rotate(0deg);
+    }
+    25% {
+      opacity: 1;
+      transform: scale(1.2) rotate(90deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1) rotate(180deg);
+    }
+    75% {
+      opacity: 0.5;
+      transform: scale(0.8) rotate(270deg);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 15px rgba(147, 51, 234, 0.2), 0 0 30px rgba(147, 51, 234, 0.05);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(147, 51, 234, 0.4), 0 0 60px rgba(147, 51, 234, 0.1);
+    }
+  }
+
+  @keyframes button-bounce {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.01);
+    }
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  @keyframes magnetic-pull {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(1px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 12s ease-in-out infinite;
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+  }
+
+  .animate-shine {
+    animation: shine 2s ease-in-out infinite;
+  }
+
+  .animate-spark {
+    animation: spark 2s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-button-bounce {
+    animation: button-bounce 3s ease-in-out infinite;
+  }
+
+  .animate-ripple {
+    animation: ripple 0.6s ease-out;
+  }
+
+  .animate-magnetic-pull {
+    animation: magnetic-pull 2s ease-in-out infinite;
+  }
+
+  /* Enhanced hover effects */
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Smooth transitions for all interactive elements */
+  .smooth-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Enhanced focus states */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2;
+  }
+
+  /* Text Shadow Utilities */
+  .text-shadow-glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+  }
+
+  .text-shadow-purple {
+    text-shadow: 0 0 10px rgba(147, 51, 234, 0.8), 0 0 20px rgba(147, 51, 234, 0.6);
+  }
+
+  /* 3D Transform Utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .rotate-y-12 {
+    transform: rotateY(12deg);
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* Enhanced Animation Utilities */
+  .animate-orbit {
+    animation: orbit 3s linear infinite;
+  }
+
+  .animate-orbit-reverse {
+    animation: orbit-reverse 4s linear infinite;
+  }
+
+  /* Additional Keyframes for Enhanced Effects */
+  @keyframes orbit {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg) translateX(20px) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg) translateX(20px) rotate(-360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes orbit-reverse {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg) translateX(15px) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(-360deg) translateX(15px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* Liquid Animation Keyframes */
+  @keyframes liquid-morph {
+    0%, 100% {
+      border-radius: 50%;
+      transform: scale(1) rotate(0deg);
+    }
+    25% {
+      border-radius: 60% 40% 30% 70%;
+      transform: scale(1.02) rotate(1deg);
+    }
+    50% {
+      border-radius: 30% 60% 70% 40%;
+      transform: scale(1.01) rotate(-1deg);
+    }
+    75% {
+      border-radius: 40% 30% 60% 70%;
+      transform: scale(1.03) rotate(0.5deg);
+    }
+  }
+
+  @keyframes liquid-wave {
+    0%, 100% {
+      transform: translateY(0) scaleY(1);
+    }
+    25% {
+      transform: translateY(-2px) scaleY(1.1);
+    }
+    50% {
+      transform: translateY(-4px) scaleY(0.9);
+    }
+    75% {
+      transform: translateY(-2px) scaleY(1.05);
+    }
+  }
+
+  @keyframes liquid-shine {
+    0% {
+      transform: translateX(-100%) skewX(-15deg);
+    }
+    100% {
+      transform: translateX(200%) skewX(-15deg);
+    }
+  }
+
+  @keyframes liquid-shine-delayed {
+    0% {
+      transform: translateX(-100%) skewX(15deg);
+    }
+    100% {
+      transform: translateX(200%) skewX(15deg);
+    }
+  }
+
+  @keyframes liquid-bubble {
+    0% {
+      transform: scale(0) translateY(0);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2) translateY(-10px);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1) translateY(-20px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes liquid-float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+    25% {
+      transform: translateY(-8px) rotate(90deg) scale(1.1);
+    }
+    50% {
+      transform: translateY(-15px) rotate(180deg) scale(0.9);
+    }
+    75% {
+      transform: translateY(-8px) rotate(270deg) scale(1.05);
+    }
+  }
+
+  @keyframes liquid-float-delayed {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+    25% {
+      transform: translateY(-6px) rotate(-90deg) scale(0.9);
+    }
+    50% {
+      transform: translateY(-12px) rotate(-180deg) scale(1.1);
+    }
+    75% {
+      transform: translateY(-6px) rotate(-270deg) scale(0.95);
+    }
+  }
+
+  @keyframes liquid-drop {
+    0% {
+      transform: translateY(-20px) scale(0);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(0) scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(20px) scale(0.8);
+      opacity: 0;
+    }
+  }
+
+  @keyframes liquid-drip {
+    0% {
+      transform: translateY(-10px) scale(1);
+    }
+    50% {
+      transform: translateY(5px) scale(1.3);
+    }
+    100% {
+      transform: translateY(15px) scale(0.7);
+    }
+  }
+
+  @keyframes liquid-drip-delayed {
+    0% {
+      transform: translateY(-8px) scale(1);
+    }
+    50% {
+      transform: translateY(3px) scale(1.2);
+    }
+    100% {
+      transform: translateY(12px) scale(0.8);
+    }
+  }
+
+  @keyframes liquid-orb {
+    0% {
+      transform: scale(0) rotate(0deg);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.5) rotate(180deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1) rotate(360deg);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes liquid-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.3);
+      opacity: 1;
+    }
+  }
+
+  @keyframes liquid-pulse-delayed {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+  }
+
+  @keyframes liquid-sparkle {
+    0% {
+      transform: scale(0) rotate(0deg);
+      opacity: 0;
+    }
+    25% {
+      transform: scale(1.2) rotate(90deg);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1) rotate(180deg);
+      opacity: 0.8;
+    }
+    75% {
+      transform: scale(0.8) rotate(270deg);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(0) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes liquid-twinkle {
+    0%, 100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes liquid-twinkle-delayed {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes liquid-orbit {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg) translateX(20px) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg) translateX(20px) rotate(-360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes liquid-orbit-reverse {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg) translateX(15px) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(-360deg) translateX(15px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes liquid-ripple {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes liquid-ripple-delayed {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+
+  @keyframes liquid-glow {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes liquid-glow-delayed {
+    0%, 100% {
+      opacity: 0.2;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes liquid-field {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes liquid-field-delayed {
+    0% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.4;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes liquid-bounce {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes liquid-text {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes liquid-click {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  @keyframes liquid-click-delayed {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+  @keyframes liquid-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes liquid-spin-reverse {
+    0% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes liquid-splash {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes liquid-splash-delayed {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2.5);
+      opacity: 0;
+    }
+  }
+
+  @keyframes liquid-hologram {
+    0%, 100% {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateX(10px);
+    }
+  }
+
+  @keyframes liquid-surface {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scaleY(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scaleY(1.1);
+    }
+  }
+
+  @keyframes liquid-flow {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%) skewX(-15deg);
+      opacity: 0;
+    }
+    50% {
+      transform: translateX(0%) skewX(-15deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%) skewX(-15deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes holographic {
+    0%, 100% {
+      opacity: 0;
+      transform: translateX(-10px) rotate(0deg);
+    }
+    25% {
+      opacity: 0.3;
+      transform: translateX(0px) rotate(90deg);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translateX(10px) rotate(180deg);
+    }
+    75% {
+      opacity: 0.3;
+      transform: translateX(0px) rotate(270deg);
+    }
+  }
+
+  /* Liquid Animation Utilities */
+  .animate-liquid-morph {
+    animation: liquid-morph 4s ease-in-out infinite;
+  }
+
+  .animate-liquid-wave {
+    animation: liquid-wave 3s ease-in-out infinite;
+  }
+
+  .animate-liquid-shine {
+    animation: liquid-shine 10s ease-in-out infinite;
+  }
+
+  .animate-liquid-shine-delayed {
+    animation: liquid-shine-delayed 12s ease-in-out infinite;
+  }
+
+  .animate-liquid-bubble {
+    animation: liquid-bubble 2s ease-out infinite;
+  }
+
+  .animate-liquid-float {
+    animation: liquid-float 8s ease-in-out infinite;
+  }
+
+  .animate-liquid-float-delayed {
+    animation: liquid-float-delayed 4.5s ease-in-out infinite;
+  }
+
+  .animate-liquid-drop {
+    animation: liquid-drop 2.5s ease-out infinite;
+  }
+
+  .animate-liquid-drip {
+    animation: liquid-drip 3s ease-in-out infinite;
+  }
+
+  .animate-liquid-drip-delayed {
+    animation: liquid-drip-delayed 3.5s ease-in-out infinite;
+  }
+
+  .animate-liquid-orb {
+    animation: liquid-orb 3s ease-out infinite;
+  }
+
+  .animate-liquid-pulse {
+    animation: liquid-pulse 5s ease-in-out infinite;
+  }
+
+  .animate-liquid-pulse-delayed {
+    animation: liquid-pulse-delayed 6s ease-in-out infinite;
+  }
+
+  .animate-liquid-sparkle {
+    animation: liquid-sparkle 8s ease-in-out infinite;
+  }
+
+  .animate-liquid-twinkle {
+    animation: liquid-twinkle 6s ease-in-out infinite;
+  }
+
+  .animate-liquid-twinkle-delayed {
+    animation: liquid-twinkle-delayed 7s ease-in-out infinite;
+  }
+
+  .animate-liquid-orbit {
+    animation: liquid-orbit 3s linear infinite;
+  }
+
+  .animate-liquid-orbit-reverse {
+    animation: liquid-orbit-reverse 4s linear infinite;
+  }
+
+  .animate-liquid-ripple {
+    animation: liquid-ripple 1s ease-out;
+  }
+
+  .animate-liquid-ripple-delayed {
+    animation: liquid-ripple-delayed 1.2s ease-out;
+  }
+
+  .animate-liquid-glow {
+    animation: liquid-glow 8s ease-in-out infinite;
+  }
+
+  .animate-liquid-glow-delayed {
+    animation: liquid-glow-delayed 10s ease-in-out infinite;
+  }
+
+  .animate-liquid-field {
+    animation: liquid-field 2s ease-out;
+  }
+
+  .animate-liquid-field-delayed {
+    animation: liquid-field-delayed 2.5s ease-out;
+  }
+
+  .animate-liquid-bounce {
+    animation: liquid-bounce 2s ease-in-out infinite;
+  }
+
+  .animate-liquid-text {
+    animation: liquid-text 3s ease-in-out infinite;
+  }
+
+  .animate-liquid-click {
+    animation: liquid-click 0.3s ease-out;
+  }
+
+  .animate-liquid-click-delayed {
+    animation: liquid-click-delayed 0.4s ease-out;
+  }
+
+  .animate-liquid-spin {
+    animation: liquid-spin 1.5s linear infinite;
+  }
+
+  .animate-liquid-spin-reverse {
+    animation: liquid-spin-reverse 2s linear infinite;
+  }
+
+  .animate-liquid-splash {
+    animation: liquid-splash 0.6s ease-out;
+  }
+
+  .animate-liquid-splash-delayed {
+    animation: liquid-splash-delayed 0.8s ease-out;
+  }
+
+  .animate-liquid-hologram {
+    animation: liquid-hologram 4s ease-in-out infinite;
+  }
+
+  .animate-liquid-surface {
+    animation: liquid-surface 3s ease-in-out infinite;
+  }
+
+  .animate-liquid-flow {
+    animation: liquid-flow 2s ease-in-out infinite;
+  }
+
+  /* Liquid Button Specific Styles */
+  .liquid-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .liquid-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(86, 55, 149, 0.3), 0 0 60px rgba(86, 55, 149, 0.2);
+  }
+
+  /* Enhanced Liquid Button Styles */
+  .liquid-button-enhanced {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #563795 0%, #7c3aed 50%, #3b82f6 100%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .liquid-button-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: left 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .liquid-button-enhanced:hover::before {
+    left: 100%;
+  }
+  
+  .liquid-button-enhanced::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .liquid-button-enhanced:hover::after {
+    opacity: 1;
+  }
+  
+  .liquid-button-enhanced:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+      0 20px 40px rgba(86, 55, 149, 0.35),
+      0 0 60px rgba(86, 55, 149, 0.25),
+      0 0 100px rgba(86, 55, 149, 0.15);
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+  
+  /* Base effects for smoother transitions */
+  .liquid-button-enhanced {
+    box-shadow: 
+      0 8px 16px rgba(86, 55, 149, 0.2),
+      0 0 30px rgba(86, 55, 149, 0.1);
+  }
+  
+  /* Smooth Liquid Transitions */
+  .smooth-liquid {
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .smooth-liquid:hover {
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Liquid Particle Effects */
+  .liquid-particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .liquid-particle:hover {
+    transform: scale(1.2) translateY(-5px);
+    opacity: 0.6;
+  }
+  
+  /* Enhanced Liquid Glow */
+  .liquid-glow-enhanced {
+    box-shadow: 
+      0 0 20px rgba(86, 55, 149, 0.3),
+      0 0 40px rgba(86, 55, 149, 0.2),
+      0 0 60px rgba(86, 55, 149, 0.1);
+    transition: box-shadow 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .liquid-glow-enhanced:hover {
+    box-shadow: 
+      0 0 30px rgba(86, 55, 149, 0.5),
+      0 0 60px rgba(86, 55, 149, 0.3),
+      0 0 90px rgba(86, 55, 149, 0.2),
+      0 0 120px rgba(86, 55, 149, 0.1);
+  }
+  
+  /* Liquid Surface Tension */
+  .liquid-surface-tension {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0.05) 50%, 
+      rgba(255, 255, 255, 0.1) 100%);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .liquid-surface-tension:hover {
+    opacity: 1;
+  }
+  
+  /* Liquid Flow Lines */
+  .liquid-flow-line {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    border-radius: 1px;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .liquid-flow-line:hover {
+    opacity: 1;
+    transform: scaleX(1.2);
+  }
+}
