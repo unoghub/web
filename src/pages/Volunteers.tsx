@@ -130,7 +130,7 @@ const Volunteers = () => {
     <div className="min-h-screen">
       <Header />
       <main>
-        <section id="volunteers" className="py-20 bg-white">
+        <section id="volunteers" className="pt-32 pb-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
           {/* Header */}

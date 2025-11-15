@@ -117,9 +117,15 @@ const ContactSection = () => {
                   required
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="w-full"
+                  maxLength={1000}
+                  className="w-full resize-none"
                   placeholder={t.contact.message}
                 />
+                <div className="flex justify-end mt-1">
+                  <p className="text-xs text-gray-500">
+                    {formData.message.length}/1000
+                  </p>
+                </div>
               </div>
 
               <Button
