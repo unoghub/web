@@ -65,7 +65,7 @@ const Footer = () => {
       color: 'hover:text-blue-400'
     },
     {
-      name: 'YouTube Premium',
+      name: 'YouTube',
       icon: Youtube,
       url: 'https://youtube.com/@unoghub',
       color: 'hover:text-red-500'
