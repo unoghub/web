@@ -24,8 +24,16 @@ jobs:
     - name: Build project
       run: npm run build
 
-    - name: Deploy dist folder to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Upload via SCP
+      uses: appleboy/scp-action@v0.1.7
       with:
-        github_token: ${{secrets.DENEME_TOKEN}}
-        publish_dir: ./dist
+        host: ${{ secrets.DEPLOY_HOST }}
+        username: ${{ secrets.DEPLOY_SSH_USER }}
+        password: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+        port: ${{ secrets.DEPLOY_SSH_PORT}}
+        source: "dist/**"
+        target: "/home/${{ secrets.DEPLOY_SSH_USER }}/public_html/"
+        rm: true 
+        overwrite: true
+        strip_components: 0
+        verbose: true
