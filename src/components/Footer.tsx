@@ -1,6 +1,15 @@
-import React from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
-import { Instagram, Linkedin, X, Mail, Heart, Youtube, Newspaper } from 'lucide-react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
+import {
+  Instagram,
+  Linkedin,
+  X,
+  Mail,
+  Heart,
+  Youtube,
+  Newspaper,
+} from "lucide-react";
 
 // Discord SVG Icon Component
 const DiscordIcon = ({ className }: { className?: string }) => (
@@ -41,119 +50,174 @@ const Footer = () => {
 
   const socialLinks = [
     {
-      name: 'Discord',
+      name: "Discord",
       icon: DiscordIcon,
-      url: 'https://unog.dev/discord',
-      color: 'hover:text-indigo-500'
+      url: "https://unog.dev/discord",
+      color: "hover:text-indigo-500",
     },
     {
-      name: 'Instagram',
+      name: "Instagram",
       icon: Instagram,
-      url: 'https://instagram.com/unoghub',
-      color: 'hover:text-pink-500'
+      url: "https://instagram.com/unoghub",
+      color: "hover:text-pink-500",
     },
     {
-      name: 'LinkedIn',
+      name: "LinkedIn",
       icon: Linkedin,
-      url: 'https://linkedin.com/company/unoghub',
-      color: 'hover:text-blue-600'
+      url: "https://linkedin.com/company/unoghub",
+      color: "hover:text-blue-600",
     },
     {
-      name: 'X',
+      name: "X",
       icon: X,
-      url: 'https://x.com/unoghub',
-      color: 'hover:text-blue-400'
+      url: "https://x.com/unoghub",
+      color: "hover:text-blue-400",
     },
     {
-      name: 'YouTube',
+      name: "YouTube",
       icon: Youtube,
-      url: 'https://youtube.com/@unoghub',
-      color: 'hover:text-red-500'
+      url: "https://youtube.com/@unoghub",
+      color: "hover:text-red-500",
     },
     {
-      name: 'Spotify',
+      name: "Spotify",
       icon: SpotifyIcon,
-      url: 'https://unog.dev/podcast',
-      color: 'hover:text-green-500'
-    }
+      url: "https://unog.dev/podcast",
+      color: "hover:text-green-500",
+    },
   ];
 
-  return (
-    <footer className="bg-gray-900 text-white py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Logo and Description */}
-          <div className="col-span-1 md:col-span-1">
-            <img 
-              src="/logo.png" 
-              alt={t.common.logo} 
-              className="h-12 w-auto mb-4"
-            />
-            <p className="text-gray-400 leading-relaxed">
-              {t.footer.description}
-            </p>
-          </div>
+  const quickLinks: Array<{
+    label: string;
+    href: string;
+    type: "anchor" | "route";
+  }> = [
+    { label: t.nav.home, href: "#home", type: "anchor" },
+    { label: t.nav.events, href: "#events", type: "anchor" },
+    { label: t.nav.contact, href: "#contact", type: "anchor" },
+    { label: t.nav.support, href: "#patreon", type: "anchor" },
+    { label: t.nav.merch, href: "/merch", type: "route" },
+    { label: t.nav.volunteers, href: "/gonullu", type: "route" },
+  ];
 
-          {/* Social Media */}
-          <div>
-            <h3 className="text-xl font-bold mb-6">{t.footer.followUs}</h3>
-            <div className="flex space-x-4 mb-6">
-              {socialLinks.map((social) => (
+  const quickLinkClass =
+    "text-sm font-semibold tracking-tight text-slate-600 px-4 py-2 rounded-tl-xl rounded-br-xl border border-transparent bg-white/60 shadow-sm transition-all duration-200 hover:text-unog-blue hover:border-unog-blue/30 hover:-translate-y-0.5";
+
+  return (
+    <footer className="bg-gradient-to-b from-white via-slate-50 to-slate-100 py-16 md:py-20">
+      <div className="max-w-6xl px-4 sm:px-0 mx-auto">
+        <div className="relative overflow-hidden rounded-tl-3xl rounded-br-3xl border border-slate-200 bg-white/90 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-16 -top-10 h-32 rounded-full bg-gradient-to-r from-unog-blue/40 via-sky-200/50 to-fuchsia-200/50 blur-3xl"
+          />
+
+          <div className="relative px-6 py-10 sm:px-10 md:py-12">
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex flex-col gap-4 lg:max-w-md">
+                <Link to="/" className="w-fit">
+                  <img
+                    src="/logo.png"
+                    alt={t.common.logo}
+                    className="h-12 w-auto"
+                  />
+                </Link>
+                <p className="text-sm leading-relaxed text-slate-600 md:text-base">
+                  {t.footer.description}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3">
+                {quickLinks.map((item) =>
+                  item.type === "route" ? (
+                    <Link key={item.label} to={item.href} className={quickLinkClass}>
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a key={item.label} href={item.href} className={quickLinkClass}>
+                      {item.label}
+                    </a>
+                  )
+                )}
+              </div>
+            </div>
+
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              <div className="rounded-2xl border border-slate-200 bg-white/70 p-5 shadow-sm">
+                <div className="flex items-center gap-3 text-slate-900">
+                  <Mail className="h-5 w-5 text-unog-blue" />
+                  <h3 className="text-lg font-semibold">{t.footer.contact}</h3>
+                </div>
+                <p className="mt-4 text-sm text-slate-500">
+                  info@unoghub.org
+                </p>
                 <a
-                  key={social.name}
-                  href={social.url}
+                  href="mailto:info@unoghub.org"
+                  className="mt-3 inline-flex items-center text-sm font-semibold text-unog-blue hover:underline"
+                >
+                  {t.footer.contact}
+                </a>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white/70 p-5 shadow-sm">
+                <div className="flex items-center gap-3 text-slate-900">
+                  <Newspaper className="h-5 w-5 text-unog-blue" />
+                  <h3 className="text-lg font-semibold">{t.footer.newsletter}</h3>
+                </div>
+                <p className="mt-4 text-sm text-slate-500">
+                  UNOG Gelistirici Bulteni
+                </p>
+                <a
+                  href="https://unog.dev/bulten"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-3 bg-gray-800 rounded-lg transition-all duration-300 hover:scale-110 ${social.color}`}
-                  title={social.name}
+                  className="mt-3 inline-flex items-center text-sm font-semibold text-unog-blue hover:underline"
                 >
-                  <social.icon className="h-6 w-6" />
+                  unog.dev/bulten
                 </a>
-              ))}
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white/70 p-5 shadow-sm">
+                <div className="flex items-center gap-3 text-slate-900">
+                  <Heart className="h-5 w-5 text-unog-blue" />
+                  <h3 className="text-lg font-semibold">{t.footer.support}</h3>
+                </div>
+                <p className="mt-4 text-sm text-slate-500">
+                  {t.footer.supportWithPatreonText}
+                </p>
+                <a
+                  href="https://unog.dev/patreon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center text-sm font-semibold text-unog-blue hover:underline"
+                >
+                  {t.footer.supportWithPatreon}
+                </a>
+              </div>
             </div>
-            
-            {/* Newsletter Link */}
-            <a 
-              href="https://unog.dev/bulten"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors block"
-            >
-              ÜNOG Geliştirici Bülteni
-            </a>
-          </div>
 
-          {/* Contact and Support */}
-          <div>
-            <h3 className="text-xl font-bold mb-6">{t.footer.contact}</h3>
-            <a 
-              href="mailto:info@unoghub.org"
-              className="flex items-center text-gray-400 hover:text-white transition-colors mb-6"
-            >
-              <Mail className="h-5 w-5 mr-3" />
-              info@unoghub.org
-            </a>
+            <div className="mt-12 border-t border-slate-200 pt-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+              <div className="flex items-center text-slate-500">
+                <span>{t.footer.madeWith}</span>
+                <Heart className="mx-2 h-4 w-4 text-unog-blue" />
+                <span>{t.footer.byCommunity}</span>
+              </div>
 
-            {/* Support Section */}
-            <h3 className="text-xl font-bold mb-6">{t.footer.support}</h3>
-            <a 
-              href="https://unog.dev/patreon"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-gray-400 hover:text-white transition-colors"
-            >
-              <Heart className="h-5 w-5 mr-3" />
-              {t.footer.supportWithPatreonText}
-            </a>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-          <div className="flex items-center justify-center text-gray-400">
-            <span>{t.footer.madeWith}</span>
-            <Heart className="h-4 w-4 mx-2 text-red-500" />
-            <span>{t.footer.byCommunity}</span>
+              <div className="flex flex-wrap items-center gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200 bg-white/80 text-slate-500 transition-all duration-200 hover:-translate-y-1 hover:shadow-md ${social.color}`}
+                    title={social.name}
+                  >
+                    <social.icon className="h-5 w-5" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
